@@ -7,11 +7,13 @@ import { people } from './reducers/people';
 
 import { AppComponent } from './containers/app.component';
 import { PersonlistComponent } from './components/personlist.component';
+import { PersoninputComponent } from './components/personinput.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PersonlistComponent
+    PersonlistComponent,
+    PersoninputComponent
   ],
   imports: [
     BrowserModule,
