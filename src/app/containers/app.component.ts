@@ -3,8 +3,6 @@ import { Store } from '@ngrx/store';
 import { id } from '../utils/id';
 import { people } from '../reducers/people';
 import { ADD_PERSON, REMOVE_PERSON, ADD_GUEST, REMOVE_GUEST, TOGGLE_ATTENDING } from '../actions/actions';
-// import { PersonList } from './person-list';
-// import { PersonInput } from './person-input';
 
 @Component({
   selector: 'app-root',
@@ -12,23 +10,21 @@ import { ADD_PERSON, REMOVE_PERSON, ADD_GUEST, REMOVE_GUEST, TOGGLE_ATTENDING } 
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  public people;
-  private subscription;
+  public people$;
 
-  constructor(  private _store: Store<any>) {
-    /* 
-      demonstrating use without the async pipe,
-      we will explore the async pipe in the next lesson
-    */
-    this.subscription = this._store
-      .select('people')
-      .subscribe(people => {
-        this.people = people;
-      });
+  constructor(private _store: Store<any>) {
+      /*
+        Observable of people, utilzing the async pipe
+        in our templates this will be subscribed to, with
+        new values being dispayed in our template.
+        Unsubscribe wil be called automatically when component
+        is disposed.
+      */
+      this.people$ = _store.select('people');
   }
   // all state-changing actions get dispatched to and handled by reducers
   addPerson(name) {
-    this._store.dispatch({ type: ADD_PERSON, payload: { id: id(), name: name }} );
+    this._store.dispatch({ type: ADD_PERSON, payload: { id: id(), name: name } });
   }
 
   addGuest(id) {
@@ -44,14 +40,8 @@ export class AppComponent {
   }
 
   toggleAttending(id) {
-    this._store.dispatch({ type: TOGGLE_ATTENDING, payload: id })
+    this._store.dispatch({ type: TOGGLE_ATTENDING, payload: id });
   }
-  /*
-    if you do not use async pipe and create manual subscriptions
-    always remember to unsubscribe in ngOnDestroy
-  */
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
+  // ngOnDestroy to unsubscribe is no longer necessary
 
 }
