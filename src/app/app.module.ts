@@ -5,7 +5,7 @@ import { HttpModule } from '@angular/http';
 import { StoreModule } from '@ngrx/store';
 import { people } from './reducers/people';
 
-import { AppComponent } from './app.component';
+import { AppComponent } from './containers/app.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +15,7 @@ import { AppComponent } from './app.component';
     BrowserModule,
     FormsModule,
     HttpModule,
-    StoreModule.provideStore(people)
+    StoreModule.provideStore({people})
   ],
   providers: [],
   bootstrap: [AppComponent]
