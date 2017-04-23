@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-personlist',
@@ -14,8 +14,14 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   </li>
 </ul>
   `,
-  styles: []
+  styles: [],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
+/*
+  with 'onpush' change detection, components which rely solely on 
+  input can skip change detection until those input references change,
+  this can supply a significant performance boost
+*/
 export class PersonlistComponent implements OnInit {
   /*
     "dumb" components do nothing but display data based on input and 
