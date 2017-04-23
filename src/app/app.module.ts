@@ -5,17 +5,21 @@ import { HttpModule } from '@angular/http';
 import { StoreModule } from '@ngrx/store';
 import { people } from './reducers/people';
 
-import { AppComponent } from './app.component';
+import { AppComponent } from './containers/app.component';
+import { PersonlistComponent } from './components/personlist.component';
+import { PersoninputComponent } from './components/personinput.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PersonlistComponent,
+    PersoninputComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    StoreModule.provideStore(people)
+    StoreModule.provideStore({people})
   ],
   providers: [],
   bootstrap: [AppComponent]
