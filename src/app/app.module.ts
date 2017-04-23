@@ -6,10 +6,12 @@ import { StoreModule } from '@ngrx/store';
 import { people } from './reducers/people';
 
 import { AppComponent } from './containers/app.component';
+import { PersonlistComponent } from './components/personlist.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PersonlistComponent
   ],
   imports: [
     BrowserModule,
