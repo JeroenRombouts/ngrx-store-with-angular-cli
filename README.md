@@ -13,4 +13,6 @@ Each step in the tutorial matches with a branch (or sometimes 2):
 6. changeDetection: branch changeDetectionOnPush
 7. Expanding State: branch expandingState
 8. Slicing State for Views: branch slicingStateForViews (remark: doesn't seem to work, will need fix)
+9. Projecting State for View with combineLatest and withLatestFrom: branch projectingState (remark: filtering doesn't work)
+10. bugfix on previous step to make the filtering work: branch projecting-bugfix
 
