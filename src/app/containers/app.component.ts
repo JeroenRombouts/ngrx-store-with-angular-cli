@@ -13,14 +13,14 @@ export class AppComponent {
   public people$;
 
   constructor(private _store: Store<any>) {
-      /*
-        Observable of people, utilzing the async pipe
-        in our templates this will be subscribed to, with
-        new values being dispayed in our template.
-        Unsubscribe wil be called automatically when component
-        is disposed.
-      */
-      this.people$ = _store.select('people');
+    /*
+      Observable of people, utilzing the async pipe
+      in our templates this will be subscribed to, with
+      new values being dispayed in our template.
+      Unsubscribe wil be called automatically when component
+      is disposed.
+    */
+    this.people$ = _store.select('people');
   }
   // all state-changing actions get dispatched to and handled by reducers
   addPerson(name) {
@@ -41,6 +41,10 @@ export class AppComponent {
 
   toggleAttending(id) {
     this._store.dispatch({ type: TOGGLE_ATTENDING, payload: id });
+  }
+
+  updateFilter(filter) {
+    this._store.dispatch({ type: filter })
   }
   // ngOnDestroy to unsubscribe is no longer necessary
 

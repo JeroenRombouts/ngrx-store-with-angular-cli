@@ -1,4 +1,6 @@
 <h3>@ngrx/store Party Planner</h3>
+<app-filter-select (updateFilter)="updateFilter($event)">
+</app-filter-select>
 <app-personinput (addPerson)="addPerson($event)">
 </app-personinput>
 <app-personlist [people]="people$ |async" (addGuest)="addGuest($event)" (removeGuest)="removeGuest($event)" (removePerson)="removePerson($event)" (toggleAttending)="toggleAttending($event)">
