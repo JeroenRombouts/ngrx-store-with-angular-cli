@@ -4,7 +4,7 @@ import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy
   selector: 'app-personlist',
   template: `
 <ul>
-  <li *ngFor="let person of people.filter(filter)" [class.attending]="person.attending">
+  <li *ngFor="let person of people" [class.attending]="person.attending">
     {{person.name}} - Guests: {{person.guests}}
     <button (click)="addGuest.emit(person.id)">+</button>
     <button *ngIf="person.guests" (click)="removeGuest.emit(person.id)">-</button>
@@ -28,8 +28,6 @@ export class PersonlistComponent implements OnInit {
     emit relevant events back up for parent, or "container" components to handle
   */
   @Input() people;
-  //for now, we will pass filter down and apply
-  @Input() filter;
   @Output() addGuest = new EventEmitter();
   @Output() removeGuest = new EventEmitter();
   @Output() removePerson = new EventEmitter();

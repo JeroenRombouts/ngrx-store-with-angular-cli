@@ -1,10 +1,10 @@
 <h3>@ngrx/store Party Planner</h3>
-<app-party-stats [invited]="(people$ | async)?.length" [attending]="(attending$ | async)?.length" [guests]="(guests$ | async)">
+<app-party-stats [invited]="(model$ | async)?.total" [attending]="(model$ | async)?.attending" [guests]="(model$ | async)?.guests">
     {{guests | async | json}}
 </app-party-stats>
 <app-filter-select (updateFilter)="updateFilter($event)">
 </app-filter-select>
 <app-personinput (addPerson)="addPerson($event)">
 </app-personinput>
-<app-personlist [people]="people$ |async" [filter]="filter$ | async" (addGuest)="addGuest($event)" (removeGuest)="removeGuest($event)" (removePerson)="removePerson($event)" (toggleAttending)="toggleAttending($event)">
+<app-personlist [people]="(model$ |async)?.people" (addGuest)="addGuest($event)" (removeGuest)="removeGuest($event)" (removePerson)="removePerson($event)" (toggleAttending)="toggleAttending($event)">
 </app-personlist>

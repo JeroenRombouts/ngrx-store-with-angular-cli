@@ -5,6 +5,7 @@ import { people } from '../reducers/people';
 import { ADD_PERSON, REMOVE_PERSON, ADD_GUEST, REMOVE_GUEST, TOGGLE_ATTENDING } from '../actions/actions';
 import 'rxjs/Rx';
 import { Observable } from 'rxjs/Observable';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-root',
@@ -12,29 +13,25 @@ import { Observable } from 'rxjs/Observable';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  public people$;
-  public filter$: Observable<string>;
-  public attending$;
-  public guests$;
+  public model$;
 
   constructor(private _store: Store<any>) {
-    /*
-      Observable of people, utilzing the async pipe
-      in our templates this will be subscribed to, with
-      new values being dispayed in our template.
-      Unsubscribe wil be called automatically when component
-      is disposed.
-    */
-    this.people$ = _store.select('people');
-          /*
-        this is a naive way to handle projecting state, we will discover a better
-        Rx based solution in next lesson
+      /*
+        Every time people or partyFilter emits, pass the latest
+        value from each into supplied function. We can then calculate
+        and output statistics.
       */
-      this.filter$ = _store.select('partyFilter');
-      this.attending$ = this.people$.map(p => p.filter(person => person.attending));
-      this.guests$ = this.people$
-          .map(p => p.map(person => person.guests)
-                     .reduce((acc, curr) => acc + curr, 0));
+      this.model$ = Observable.combineLatest(
+          _store.select('people'),
+          _store.select('partyFilter'),
+          (people: Array<any>, filter: any) => {
+          return {
+            total: people.length,
+            people:_.filter(people, filter),
+            attending: _.filter(people, person => person.attending).length,
+            guests: people.reduce((acc, curr) => acc + curr.guests, 0)
+          }
+        });
   }
   // all state-changing actions get dispatched to and handled by reducers
   addPerson(name) {
