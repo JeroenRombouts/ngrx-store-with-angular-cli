@@ -27,10 +27,10 @@ export class AppComponent {
           (people: Array<any>, filter: any) => {
           return {
             total: people.length,
-            people:_.filter(people, filter),
+            people: _.filter(people, filter),
             attending: _.filter(people, person => person.attending).length,
             guests: people.reduce((acc, curr) => acc + curr.guests, 0)
-          }
+          };
         });
   }
   // all state-changing actions get dispatched to and handled by reducers
@@ -55,7 +55,7 @@ export class AppComponent {
   }
 
   updateFilter(filter) {
-    this._store.dispatch({ type: filter })
+    this._store.dispatch({ type: filter });
   }
   // ngOnDestroy to unsubscribe is no longer necessary
 

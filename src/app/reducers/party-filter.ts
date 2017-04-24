@@ -1,8 +1,8 @@
-import { SHOW_ATTENDING, SHOW_ALL, SHOW_WITH_GUESTS} from '../actions/actions';
+import { SHOW_ATTENDING, SHOW_ALL, SHOW_WITH_GUESTS } from '../actions/actions';
 
-//return appropriate function depending on selected filter
+// return appropriate function depending on selected filter
 export const partyFilter = (state = person => person, action) => {
-    switch(action.type){
+    switch (action.type) {
         case SHOW_ATTENDING:
             return person => person.attending;
         case SHOW_ALL:
