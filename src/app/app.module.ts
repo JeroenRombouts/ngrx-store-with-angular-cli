@@ -10,13 +10,15 @@ import { AppComponent } from './containers/app.component';
 import { PersonlistComponent } from './components/personlist.component';
 import { PersoninputComponent } from './components/personinput.component';
 import { FilterSelectComponent } from './components/filter-select.component';
+import { PartyStatsComponent } from './components/party-stats.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PersonlistComponent,
     PersoninputComponent,
-    FilterSelectComponent
+    FilterSelectComponent,
+    PartyStatsComponent
   ],
   imports: [
     BrowserModule,
