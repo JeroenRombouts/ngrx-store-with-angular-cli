@@ -10,4 +10,7 @@ Each step in the tutorial matches with a branch (or sometimes 2):
 3. Utilizing Container Components: branch containers-components
 4. Utilizing the AsyncPipe: branches withasyncpipe and asyncpipe part 2
 5. intermezzo: branch devtools (installs and adds the configuration for Redux devtools, needs npm install)
+6. changeDetection: branch changeDetectionOnPush
+7. Expanding State: branch expandingState
+8. Slicing State for Views: branch slicingStateForViews (remark: doesn't seem to work, will need fix)
 

@@ -4,7 +4,7 @@ import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy
   selector: 'app-personlist',
   template: `
 <ul>
-  <li *ngFor="let person of people" [class.attending]="person.attending">
+  <li *ngFor="let person of people.filter(filter)" [class.attending]="person.attending">
     {{person.name}} - Guests: {{person.guests}}
     <button (click)="addGuest.emit(person.id)">+</button>
     <button *ngIf="person.guests" (click)="removeGuest.emit(person.id)">-</button>
@@ -15,19 +15,21 @@ import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy
 </ul>
   `,
   styles: [],
-    changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 /*
-  with 'onpush' change detection, components which rely solely on 
+  with 'onpush' change detection, components which rely solely on
   input can skip change detection until those input references change,
   this can supply a significant performance boost
 */
 export class PersonlistComponent implements OnInit {
   /*
-    "dumb" components do nothing but display data based on input and 
+    "dumb" components do nothing but display data based on input and
     emit relevant events back up for parent, or "container" components to handle
   */
   @Input() people;
+  //for now, we will pass filter down and apply
+  @Input() filter;
   @Output() addGuest = new EventEmitter();
   @Output() removeGuest = new EventEmitter();
   @Output() removePerson = new EventEmitter();
